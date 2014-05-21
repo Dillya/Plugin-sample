@@ -23,6 +23,7 @@ int main(int argc, const char *argv[])
 	if(plugin_func == NULL)
 	{
 		fprintf(stderr, "Failed to load plugin function!\n");
+		dlclose(plugin);
 		return -1;
 	}
 
@@ -31,6 +32,7 @@ int main(int argc, const char *argv[])
 	if(str == NULL)
 	{
 		fprintf(stderr, "Plugin function failed!\n");
+		dlclose(plugin);
 		return -1;
 	}
 
@@ -39,6 +41,7 @@ int main(int argc, const char *argv[])
 
 	/* Close plugin and free string */
 	dlclose(plugin);
+	free(str);
 
 	return 0;
 }
